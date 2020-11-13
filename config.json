@@ -1,5 +1,8 @@
 {
     "version":"1.0",
     "ano":"2020",
-    "autor":"Julio Nunes Avelar"
+    "autor":"Julio Nunes Avelar",
+    "API_DADOS":"http://192.168.0.107:8000/api/",
+    "credenciais_api_dados":"",
+    "min_cargo": "A"
 }

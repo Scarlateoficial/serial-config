@@ -3,6 +3,7 @@ import requests
 
 Api_dados = 'http://192.168.0.107:8000/api/'
 credenciais_api_dados = ("julio","15052005")
+min_cargo = 'A'
 
 class User():
     id = None
@@ -11,7 +12,7 @@ class User():
     cargo = ''
     verificado = False
 
-    def check_acess(self, cargo_min = 'C'):
+    def check_acess(self, cargo_min = min_cargo):
         return self.cargo >= cargo_min
 
     def login(self, email='',senha=''):
