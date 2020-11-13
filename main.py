@@ -12,6 +12,7 @@ from core.auth import User
 #for i in tqdm(range(1000)):
 #     sleep(0.01)
 
+#variaveis e objetos globais:
 user = User()
 so = platform.system()
 config = open('config.json','r')
@@ -21,6 +22,7 @@ version = config['version']
 ano = config['ano']
 autor = config['autor']
 
+#funções
 def login():
     email = input('\nEmail: ')
     senha = input('\nSenha: ')
