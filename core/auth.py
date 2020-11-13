@@ -8,7 +8,7 @@ min_cargo = 'A'
 class User():
     id = None
     nome = ''
-    toke = ''
+    token = ''
     cargo = ''
     verificado = False
 

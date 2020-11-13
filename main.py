@@ -5,12 +5,9 @@ import requests
 import serial
 import json
 import platform
-from tqdm import tqdm
 from time import sleep
 from core.auth import User
-
-#for i in tqdm(range(1000)):
-#     sleep(0.01)
+from core import defs
 
 #variaveis e objetos globais:
 user = User()
@@ -42,13 +39,10 @@ def start():
     print('\n----------------------------------------------\n')
     sleep(0.5)
 
-def log(menssagem):
-    print(f"[ INFO ] {menssagem}")
-
 def menu():
     os.system('clear')
     for alert in alerts:
-        log(alert)
+        defs.log(alert)
     
     print('\n\nEscolha uma opção')
     print(' 0 - Configurar/Modificar dispositivo')
@@ -59,7 +53,15 @@ def menu():
 
     t = input('\n :')
 
-    if t == '4':
+    if t == '0':
+        defs.config_dispositivo()
+    elif t == '1':
+        defs.observa_serial()
+    elif t == '2':
+        defs.busca_dispositivo()
+    elif t == '3':
+        defs.logs_dispositivo()
+    elif t == '4':
         return False
     else:
         alerts.append('Opção invalida')
@@ -76,30 +78,30 @@ def main():
         r = login()
         if r['sucess'] == False:
             if r['conecao'] == True:
-                log(r['error'])
+                defs.log(r['error'])
                 t = input('Tentar novamente ??? (y/n): ')
                 if t != "y" and t != "Y":
-                    log('Processo terminado pelo usuario')
+                    defs.log('Processo terminado pelo usuario')
                     return
                 else:
                     continue
             else:
-                log(r['error'])
+                defs.log(r['error'])
                 return
         elif r['sucess'] == True:
-            log('Logado com sucesso!')
+            defs.log('Logado com sucesso!')
             break
         else:
-            log('Erro no sistema!')
+            defs.log('Erro no sistema!')
             return
 
     if not user.verificado:
-        log('Verifique seu email para ter acesso ao sistema!')
+        defs.log('Verifique seu email para ter acesso ao sistema!')
         return
     if user.check_acess():
-        log('Acesso permitido')
+        defs.log('Acesso permitido')
     else:
-        log('Usuario sem acesso ao sistema')
+        defs.log('Usuario sem acesso ao sistema')
         return
 
     while True:
@@ -108,7 +110,7 @@ def main():
         else:
             break
 
-    log('Processo finalizado')
+    defs.log('Processo finalizado')
     return
 
 if __name__ == '__main__':
